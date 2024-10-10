@@ -1,0 +1,25 @@
+site_name: "Edgar Alcaraz Caballer - 1r ASIX"
+custom_dir: docs/images
+theme:
+  name: material
+  palette:
+    scheme: slate  
+    primary: 'indigo'
+    accent: 'cyan'
+  font:
+    text: 'Roboto'
+    code: 'Fira Code'
+
+nav:
+  - Inicio: index.md
+  - 1. Sistema operatiu: sistema-operatiu.md
+  - 2. Punts de restauració: punts-restauracio.md
+  - 3. Llicenciament: llicenciament.md
+  - 4. Gestors d’arrancada: gestors-arrancada.md
+  - 5. Configuració xarxa bàsica: configuracio-xarxa-basica.md
+  - 6. Comandes generals: comandes-generals.md
+  - 7. Instal·lacions de programari: instal-lacions-programari.md
+
+plugins:
+  - search
+
