@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../4.Unir_equips_al_domini/">
+        <link rel="prev" href="../3.Entorns_Grafics/">
       
       
-        <link rel="next" href="../6.Servidor_NFS/">
+        <link rel="next" href="../5.Servidor_Samba/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>5.Servidor Samba - Edgar Alcaraz Caballer - 1r ASIX</title>
+        <title>4.Unir equips al domini - Edgar Alcaraz Caballer - 1r ASIX</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5.Servidor Samba
+              4.Unir equips al domini
             
           </span>
         </div>
@@ -716,26 +716,6 @@
                 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../4.Unir_equips_al_domini/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    4.Unir equips al domini
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -749,12 +729,32 @@
         
   
   <span class="md-ellipsis">
-    5.Servidor Samba
+    4.Unir equips al domini
   </span>
   
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.Servidor_Samba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5.Servidor Samba
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -818,9 +818,36 @@
                   
 
 
-  <h1>5.Servidor Samba</h1>
+  <h1>4.Unir equips al domini</h1>
 
-
+<p><strong>Unir equips al domini</strong>
+Per connectar un client al domini LDAP, primer instal·larem el paquet necessari::</p>
+<p>apt install libnss-ldap libpam-ldap nscd
+<img alt="23" src="../IMAGES/23.1.png" />
+Durant la instal·lació, apareixerà un assistent de configuració on haurem d'introduir la IP del servidor LDAP.
+<img alt="24" src="../IMAGES/24.png" />
+<img alt="25" src="../IMAGES/25.png" />
+Després, completarem la configuració indicant els noms de domini definits prèviament.
+<img alt="26" src="IMAGES/26.png" />
+<img alt="27" src="../IMAGES/27.png" />
+<img alt="28" src="../IMAGES/28.png" />
+<img alt="29" src="../IMAGES/29.png" />
+<img alt="30" src="../IMAGES/30.png" />
+<img alt="31" src="../IMAGES/31.png" />
+<img alt="32" src="../IMAGES/32.png" />
+<img alt="33" src="../IMAGES/33.png" />
+<img alt="34" src="../IMAGES/34.png" /></p>
+<p>Després d'haver configurat el paquet, el següent pas consisteix a modificar certs paràmetres del client per garantir que es prioritzi la detecció del servidor LDAP. Per aconseguir-ho, haurem d'editar el fitxer etc/nsswitch.conf.
+<img alt="35" src="../IMAGES/35.png" /></p>
+<p>D'aquesta manera, ens assegurem que el sistema revisi primer els usuaris emmagatzemats al directori LDAP abans de consultar altres fonts. Concretament, estem indicant que es comprovin els fitxers relacionats amb usuaris, grups i contrasenyes.</p>
+<p>També ajustarem etc/pam.d/common-session perquè es creïn automàticament els directoris d’usuari:
+<img alt="36" src="../IMAGES/36.png" /></p>
+<p>Aquest canvi farà que quan un usuari inicia sessió i no té un directori principal, se li crea automàticament un nou directori principal amb el contingut de /etc/skel i amb els permisos especificats per umask=022.</p>
+<p>Per acabar de configurar el client, també ajustarem l'entorn d'autenticació per permetre als usuaris iniciar sessió manualment.
+<img alt="36" src="../IMAGES/36.1.png" />
+<img alt="37" src="../IMAGES/37.png" /></p>
+<p>Amb aquesta configuració, el gestor de pantalla mostrarà una opció perquè els usuaris introdueixin el seu nom d'usuari de manera manual, en lloc d'haver de seleccionar-lo d'una llista. Aquesta funcionalitat és especialment útil en sistemes amb un gran nombre d'usuaris o en entorns on es necessita més flexibilitat en l'accés.</p>
+<p><img alt="38" src="../IMAGES/38.png" /></p>
 
 
 

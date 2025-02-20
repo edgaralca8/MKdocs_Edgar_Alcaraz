@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../4.Unir_equips_al_domini/">
+        <link rel="prev" href="../1.Instalacio_domini_LDAP/">
       
       
-        <link rel="next" href="../6.Servidor_NFS/">
+        <link rel="next" href="../3.Entorns_Grafics/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>5.Servidor Samba - Edgar Alcaraz Caballer - 1r ASIX</title>
+        <title>2.Gestio del domini mitjançant comandes - Edgar Alcaraz Caballer - 1r ASIX</title>
       
     
     
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              5.Servidor Samba
+              2.Gestio del domini mitjançant comandes
             
           </span>
         </div>
@@ -676,9 +676,16 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../2.Gestio_del_domini_mitjan%C3%A7ant_comandes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -687,6 +694,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -736,16 +744,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../5.Servidor_Samba/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -754,7 +755,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -818,9 +818,25 @@
                   
 
 
-  <h1>5.Servidor Samba</h1>
+  <h1>2.Gestio del domini mitjançant comandes</h1>
 
-
+<p><strong>Gestió del domini</strong>
+Per estructurar l'organització i començar a gestionar usuaris, hi ha dues opcions principals: treballar amb fitxers LDIF o utilitzar comandes directament. En aquest apartat, ens centrarem en l'ús de comandes essencials com search, add, modify i delete.</p>
+<p>Abans de començar, comprovarem que el domini s'ha creat correctament i després revisarem els fitxers preparats a l'escriptori que contenen informació sobre els usuaris.</p>
+<p><img alt="39" src="../IMAGES/39.png" />
+<em>ldapadd</em>
+Tal com es pot observar, el fitxer inclou diverses dades d'usuaris que volem incorporar al sistema. Ho farem utilitzant la comanda ldapadd.</p>
+<p>Per registrar els usuaris definits en el fitxer LDIF, executarem la comanda següent:</p>
+<p>ldapadd -x -D "cn=admin,dc=edgar,dc=cat" -w -f dades.ldif
+<img alt="40" src="../IMAGES/40.png" /></p>
+<p><em>ldapsearch</em>
+Un cop els usuaris s'han creat correctament, podem verificar-ne l'existència amb la comanda ldapsearch:</p>
+<p>ldapsearch -xLLL -b "dc=edgar,dc=cat"
+A més, podem aplicar diferents filtres de cerca per trobar usuaris segons el seu uid, objectClass, correu electrònic, o qualsevol altra propietat rellevant
+<img alt="41" src="../IMAGES/41.png" />
+<img alt="42" src="../IMAGES/42.png" />
+<img alt="43" src="../IMAGES/43.png" />
+<img alt="44" src="../IMAGES/44.png" /></p>
 
 
 
