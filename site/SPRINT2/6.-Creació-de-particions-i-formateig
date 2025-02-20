@@ -1,0 +1,147 @@
+Creació de particions i formatar
+
+Tipus de format
+
+Baix nivell (Fa una operació de baix nivell en el disc que organitza físicament els sectors i les pistes. Bàsicament, prepara el mitjà d'emmagatzematge (generalment discos magnètics) per a poder guardar dades des de zero. S'assignen els sectors físics del disc i es marquen les àrees defectuoses.
+
+Entre Mitjà Elimina tota la informació lògica del disc, crea un sistema d'arxius nou (FAT, NTFS, ext4, etc.) i revisa el disc a la recerca d'errors (amb un escaneig superficial). Aquest procés sobreescriu les dades existents i fa que sembli un disc nou en l'àmbit lògic.
+
+Ràpid: Esborra només la taula d'assignació d'arxius (o el seu equivalent segons el sistema d'arxius), cosa que significa que els arxius existents no s'eliminen físicament, però el sistema operatiu “pensa” que l'espai està buit i pot escriure sobre ell. És un procés molt més ràpid perquè no escaneja ni sobreescriu sectors.
+
+
+Practica
+Creem un nou disc en el Virtual box per a poder treballar amb el per a fer la practica.
+
+Disc
+
+Entrem dins de la maquina virtual i introduïm el següent comando per a ficar-nos dins del disc
+
+dev
+
+Col·locarem n per a crear particions dins del disc seleccionat.
+
+n
+
+Ens dona com a recomanació que sigui predeterminada i amb valor 1 asi que pressionem intro.
+
+sbdp
+
+Li indiquem la grandària de la partició i sortim
+
+particion
+
+Una vegada acabem col·loquem W per a sortir
+
+sortir
+
+Comprobacion
+Col·loquem fdisk -l per a comprovar la llista dels discos i veiem la particion.
+
+Comprobacion
+
+Formatar
+Formatem la particion i modifiquem la grandària del bloc
+
+mkfs.ext4 -b (modificacion de la grandària) (disc)
+
+mfks
+
+Comprovació del formato
+
+comprobacion
+
+Muntatge particions
+Temporal
+Primer creem una carpeta en /var/ i dins li posem un arxivament en aquest cas un txt.
+
+crearcarpeta
+
+mount -t (extension) (disc) (carpeta per a muntar la partició) mount-t
+
+Una vegada muntada la partició aparecera
+
+ls
+
+Podem comprovar que desapareix l'arxiu “hola” de l'interior de la carpeta de “particio1”, l'arxiu no s'a perdut però en muntar una partició simplement no apareix, podem fer la comprovació desmuntant amb umount /dev/*sdb1
+
+unmount
+
+lsborrada
+
+Creguem un nou arxiu a l'interior amb la particion creada
+
+adeu
+
+En fer un “REBOOT” es perdrà la partició ja que és una partició temporal.
+
+Definitiva
+Modificarem l'arxiu fstab situat en /etc.
+
+/etc/fstab/ -> Serveix per a crear particions definitives dins del sistema operatiu
+
+fstab
+
+Reiniciem la maquina i per a comprovar que s'a fet correctament la partició fem un ls de la carpeta on s'a creat la particion en aquest cas /var/*particio1 i hauria d'estar dins l'arxiu “adeu” que creguem anteriorment dins de la mateixa partició.
+
+comprobacion
+
+Compartició de carpeta
+Nautilus
+Instal·lem la aplicacion nautilus
+
+nautilus
+
+Compartim la carpeta amb la nova opció que ens apareixerà.
+
+interfície
+
+primererror
+
+segundoerror
+
+Podem comprovar que aquest mètode no funciona pel que el farem amb un servidor SAMBA.
+
+SAMBA
+Instal·lem el Samba amb “suo apt install samba”
+
+samba
+
+Creem la partició en l'arxiu smb.conf situat en /etc/samba/smb.conf
+
+smbconf
+
+Una vegada modificat hem de fer un systemctl restart a smbd i nmbd
+
+systemctlrestart
+
+Ara canviem els permisos perquè tots tinguin permisos sobre la carpeta particio1 i li canviem el grup i el ususario propietari a nobody i nogroup
+
+permisospropietarios
+
+ls-l
+
+Creguem l'usuari platano ja que és el que col·loquem en crear la particion utilitzant el comando “adduser”
+
+platano
+
+Utilitzem el comando smbpasswd -a per a canviar la contrasenya d'un usuari al servidor samba
+
+smbpasswd
+
+ara en la MAQUINA CLIENT (fora de la maquina virtual) posem el comando “smbclient -L //(IP)” així podrem veure els recursos compartits de la IP que col·loquem
+
+smbclient
+
+Anem a les carpetes de la MAQUINA CLIENT i tractem de connectar-nos en la opcion de baix a l'esquerra
+
+ConexionCliente
+
+Posem les credencials de l'usuari
+
+credencials
+
+Creguem una carpeta des de la MAQUINA CLIENT en la unitat compartida
+
+Crearcarpeta
+
+I la comprovem des de la MAQUINA SERVIDOR (Màquina virtual) que està en la unitat compartida i que l'ha creat plàtan.

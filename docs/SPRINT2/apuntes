@@ -1,0 +1,116 @@
+# Gestion de usuarios, grupos y permisos.
+
+## Usuarios
+Al ejecutar este comando se abrira el archivo password y podras ver los usuarios.
+```
+nano /etc/passwd
+```
+![01](sources/imagenes/users_groups_permissions/1.png)
+Al ejecutar este comando podras ver las contraseñas. 
+```
+nano /etc/shadow
+```
+![02](sources/imagenes/users_groups_permissions/2.png)
+Al ejecutar este comando podras ver las contraseñas de las contraseñas. 
+```
+nano /etc/gshadow
+```
+![03](sources/imagenes/users_groups_permissions/3.png)
+Este comando permite añadir usuarios.
+```
+useradd
+```
+![04](sources/imagenes/users_groups_permissions/4.png)
+Con este comando puedes crear un usuario asignandole contraseña.
+```
+adduser
+```
+![05](sources/imagenes/users_groups_permissions/5.png)
+
+```
+userdel
+```
+```
+userdel -r
+```
+```
+usermod
+```
+```
+usermod -L
+```
+```
+usermod --shell /bin/bash 
+```
+```
+passwd
+```
+```
+gpasswd -a
+```
+
+## Grupos
+```
+groups
+```
+```
+addgroup
+```
+```
+adduser usuario grupo
+```
+```
+deluser usuario grupo
+```
+```
+usermod -a -G usuario grupo
+```
+```
+usermod -g usuario grupo
+```
+```
+groupmod -n usuario grupo
+```
+## Permisos
+
+## Chmod
+```
+chmod -R
+```
+```
+sticky: chmod numero de permisos o o+t
+```
+```
+suid: chmod numero de permisos o u+s
+```
+```
+sgid: chmod numero de permisos o g+s
+```
+## Chown
+```
+chown -R
+```
+## Chgrp
+```
+chgrp -R
+```
+## Acl
+```
+getfacl
+```
+```
+setfacl -m user:permiso de la carpeta
+```
+```
+setfactl -b
+```
+```
+setfacl -x usuario carpeta
+```
+## Umask
+
+Para poner un unmask ejecuta el comando:
+
+```
+umask numero
+```
