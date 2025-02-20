@@ -1,0 +1,23 @@
+**Gestió del domini**
+Per estructurar l'organització i començar a gestionar usuaris, hi ha dues opcions principals: treballar amb fitxers LDIF o utilitzar comandes directament. En aquest apartat, ens centrarem en l'ús de comandes essencials com search, add, modify i delete.
+
+Abans de començar, comprovarem que el domini s'ha creat correctament i després revisarem els fitxers preparats a l'escriptori que contenen informació sobre els usuaris.
+
+![39](IMAGES/39.png)
+*ldapadd*
+Tal com es pot observar, el fitxer inclou diverses dades d'usuaris que volem incorporar al sistema. Ho farem utilitzant la comanda ldapadd.
+
+Per registrar els usuaris definits en el fitxer LDIF, executarem la comanda següent:
+
+ldapadd -x -D "cn=admin,dc=edgar,dc=cat" -w -f dades.ldif
+![40](IMAGES/40.png)
+
+*ldapsearch*
+Un cop els usuaris s'han creat correctament, podem verificar-ne l'existència amb la comanda ldapsearch:
+
+ldapsearch -xLLL -b "dc=edgar,dc=cat"
+A més, podem aplicar diferents filtres de cerca per trobar usuaris segons el seu uid, objectClass, correu electrònic, o qualsevol altra propietat rellevant
+![41](IMAGES/41.png)
+![42](IMAGES/42.png)
+![43](IMAGES/43.png)
+![44](IMAGES/44.png)
